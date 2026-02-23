@@ -2,71 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BCRS Assistant</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        background: #f4f6f8;
-        margin: 0;
-        height: 100vh;
-        display: flex;
-        justify-content: flex-end;
-      }
-      #chat-container {
-        width: 400px;
-        height: 100vh;
-        margin: 0;
-        background: white;
-        border-radius: 0;
-        box-shadow: -2px 0 10px rgba(0,0,0,0.2);
-        display: flex;
-        flex-direction: column;
-      }
-      #chat-header {
-        background: #1e88e5;
-        color: white;
-        padding: 15px;
-        font-size: 18px;
-        border-radius: 10px 10px 0 0;
-      }
-      #chat-box {
-        flex: 1;
-        padding: 10px;
-        overflow-y: auto;
-      }
-      .message {
-        padding: 8px;
-        margin: 5px;
-        border-radius: 5px;
-      }
-      .user {
-        background: #e3f2fd;
-        text-align: right;
-      }
-      .bot {
-      background: #f1f1f1;
-      }
-      #input-area {
-        display: flex;
-        border-top: 1px solid #ccc;
-      }
-      #input {
-        flex: 1;
-        padding: 10px;
-        border: none;
-        font-size: 16px;
-      }
-      #send {
-        background: #1e88e5;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        cursor: pointer;
-      }
-      #send:hover {
-        background: #1565c0;
-      }
-    </style>
+    <link rel="stylesheet" href="./style.css">
   </head>
 
   <body>
@@ -80,78 +18,6 @@
       <input type="text" id="input" placeholder="Ask away">
       <button id="send">Send</button>
     </div>
-    <script>
-      const knowledge = {
-        greeting: "Hello! Welcome to Believers Church Residential School. How can I help you?",
-        admission: "Admission is based on interview for LKG, written test for UKG, Classes I–IX & Class XI.",
-        fees: "Tuition fees are Rs. ______ per quarter. One time admission fee and annual establishment fee also apply.",
-        location: "The school is at Kuttapuzha, Tiruvalla, Kerala - 689103. https://maps.app.goo.gl/8J5to2M5DS8SJnM2A",
-        hostel: "Hostel facilities are available for boys and girls from Class V onwards.",
-        contact: "Phone: +91 0469 2733402 | Email: bcrsthiruvalla@gmail.com",
-        courses: "We offer Science and Commerce streams in Classes XI and XII.",
-        facilities: "Facilities include computer lab, science labs, library, sports, swimming pool & digital classes.",
-        cbse: "Yes, the school is affiliated with the CBSE board.",
-        princi:  "The Principal is Ms. Shirley Ann Thomas. She joined the school in 2010.",
-        default: "Please ask about admission, courses, hostel, facilities, contact or location."
-};
-
-      function addMessage(text, sender) {
-        const chatBox = document.getElementById("chat-box");
-        const msg = document.createElement("div");
-        msg.classList.add("message");
-        msg.classList.add(sender);
-        msg.innerText = text;
-        chatBox.appendChild(msg);
-        chatBox.scrollTop = chatBox.scrollHeight;
-      }
-
-      function getResponse(input) {
-        input = input.toLowerCase();
-        if (input.includes("admission"))
-          return knowledge.admission;
-        if (input.includes("fee"))
-          return knowledge.fees;
-        if (input.includes("location") || input.includes("address"))
-          return knowledge.location;
-        if (input.includes("hostel"))
-          return knowledge.hostel;
-        if (input.includes("contact") || input.includes("phone") || input.includes("email") || input.includes("mobile"))
-          return knowledge.contact;
-        if (input.includes("course") || input.includes("stream") || input.includes("subject"))
-          return knowledge.courses;
-        if (input.includes("facilit"))
-          return knowledge.facilities;
-        if (input.includes("cbse") || input.includes("board"))
-          return knowledge.cbse;
-        if (input.includes("hello") || input.includes("hi"))
-          return knowledge.greeting;
-        if (input.includes("princi"))
-          return knowledge.princi;
-        return knowledge.default;
-      }
-
-      function sendMessage() {
-        const inputField = document.getElementById("input");
-        const text = inputField.value;
-        if (text === "") return;
-        addMessage(text, "user");
-        const response = getResponse(text);
-        setTimeout(() => {
-          addMessage(response, "bot");
-        }, 500);
-        inputField.value = "";
-      }
-
-      document.getElementById("send").onclick = sendMessage;
-      document.getElementById("input").addEventListener("keypress", function(event) {
-        if (event.key === "Enter")
-          sendMessage();
-      });
-
-      window.onload = function() {
-        addMessage(knowledge.greeting, "bot");
-        document.getElementById("input").focus();
-      };
-    </script>
+    <script src="./script.js"></script>
   </body>
 </html>
