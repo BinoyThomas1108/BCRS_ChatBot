@@ -28,7 +28,7 @@ function getResponse(input) {
         return knowledge.admission;
     if (input.includes("fee"))
         return knowledge.fees;
-    if (input.includes("location") || input.includes("address"))
+    if (input.includes("location") || input.includes("located") || input.includes("address"))
         return knowledge.location;
     if (input.includes("hostel"))
         return knowledge.hostel;
